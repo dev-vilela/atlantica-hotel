@@ -18,6 +18,21 @@ public class Room {
     private String photoUrl;
     private Integer maxGuests;
 
+
+    public Room() {
+
+    }
+
+    public Room(Long id, String name, String description, Double pricePerNight, String photoUrl, Integer maxGuests) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.pricePerNight = pricePerNight;
+        this.photoUrl = photoUrl;
+        this.maxGuests = maxGuests;
+    }
+
+
     public Long getId() {
         return id;
     }
