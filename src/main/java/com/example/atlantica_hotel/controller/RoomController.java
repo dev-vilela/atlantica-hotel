@@ -18,6 +18,7 @@ import java.util.List;
 @RequestMapping("/atlantica/rooms")
 public class RoomController {
 
+    //OPÇÔES DE QUARTOS
     private  final RoomRepository roomRepository;
 
     public RoomController(RoomRepository roomRepository){

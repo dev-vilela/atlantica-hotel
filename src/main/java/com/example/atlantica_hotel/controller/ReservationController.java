@@ -4,10 +4,14 @@ import com.example.atlantica_hotel.model.Reservation;
 import com.example.atlantica_hotel.service.ReservationService;
 import com.example.atlantica_hotel.repository.ReservationRepository; // Import necessário
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,6 +21,7 @@ import java.util.List;
 @RequestMapping("/atlantica/reservations")
 public class ReservationController {
 
+    //CRUD SOBRE RESERVAS
     private final ReservationService reservationService;
     private final ReservationRepository reservationRepository; // Adicione esta linha
 
@@ -33,5 +38,20 @@ public class ReservationController {
     @GetMapping
     public List<Reservation> listReservations() {
         return reservationRepository.findAll();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteReservation(@PathVariable Long id) {
+        reservationRepository.deleteById(id);
+    }
+
+    @GetMapping("/{id}/status")
+    public  Reservation callStatus(@PathVariable Long id, @RequestParam String status){
+        return reservationService.updateReservationStatus(id, status);
+    }
+
+    @PutMapping("/{id}/status")
+    public  Reservation updateStatus(@PathVariable Long id, @RequestParam String status){
+        return reservationService.updateReservationStatus(id, status);
     }
 }

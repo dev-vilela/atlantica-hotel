@@ -45,4 +45,14 @@ public class ReservationService {
         reservation.setStatus("PENDING"); // Default
         return reservationRepository.save(reservation);
     }
+
+    // Novo método para atualizar o status da reserva
+    @Transactional
+    public Reservation updateReservationStatus(Long reservationId, String newStatus) {
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new RuntimeException("Reserva com ID " + reservationId + " não encontrada."));
+
+        reservation.setStatus(newStatus);
+        return reservationRepository.save(reservation);
+    }
 }
