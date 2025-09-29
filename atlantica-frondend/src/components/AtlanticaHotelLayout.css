@@ -1,0 +1,137 @@
+:root{
+  --teal-700: #0f766e;
+  --teal-600: #0d9488;
+  --yellow-400: #facc15;
+  --bg: #f8fafb;
+  --muted: #6b7280;
+  --card-bg: #ffffff;
+  --shadow: 0 6px 18px rgba(15,23,42,0.06);
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+body, html, #root { height: 100%; margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#111827; background: var(--bg); }
+
+/* Container */
+.atl-container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+/* Header */
+.atl-header { background: var(--teal-700); color: #fff; }
+.atl-header-inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding: 18px 0; }
+.atl-brand { display:flex; align-items:center; gap:12px; }
+.atl-logo { width:44px; height:44px; border-radius:50%; background: rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; }
+.atl-brand-text h1 { margin:0; font-size:18px; }
+.atl-sub { margin:0; font-size:12px; color: rgba(255,255,255,0.9); }
+
+/* Nav */
+.atl-nav { display:flex; align-items:center; gap:18px; }
+.atl-nav a { color: #fff; text-decoration:none; font-size:14px; }
+.btn { border-radius:8px; padding:8px 12px; cursor:pointer; border:none; font-weight:600; }
+.btn-cta { background: var(--yellow-400); color: #064e3b; }
+.btn-cta-small { background: var(--yellow-400); color:#064e3b; padding:6px 10px; border-radius:6px; display:none; }
+
+/* Mobile book button */
+.atl-mobile-book { display:none; }
+
+/* HERO */
+.atl-hero {
+   background: linear-gradient(180deg, var(--teal-700), var(--teal-600));
+   color: #fff; 
+   padding: 56px 0; 
+  }
+.atl-hero-inner { display:flex; gap:24px; align-items:center; flex-direction:column; }
+.atl-hero-left h2 { font-size:32px; margin:0 0 12px 0; line-height:1.03; font-weight:800; }
+.hero-sub { margin:0 0 16px 0; opacity:0.95; font-size:16px; }
+.hero-actions { display:flex; gap:12px; margin-bottom:12px; }
+.btn-primary { background: var(--yellow-400); color:#064e3b; padding:12px 18px; border-radius:8px; text-decoration:none; display:inline-block; }
+.btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.25); padding:10px 16px; border-radius:8px; text-decoration:none; }
+.hero-note { opacity: 0.95; font-size:13px; }
+
+/* hero image */
+.atl-hero-right .hero-image-wrap { 
+  border-radius:12px; 
+  overflow:hidden; 
+  box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,0.08);
+  
+}
+.atl-hero-right img { 
+  display:block; 
+  width:100%; 
+  height:460px; object-fit:cover;
+
+}
+
+/* MAIN layout */
+.atl-main { display:grid; grid-template-columns: 1fr; gap:24px; margin-top:-48px; padding-bottom:40px; }
+
+/* rooms section */
+.rooms-section { background: var(--card-bg); border-radius:12px; box-shadow: var(--shadow); padding:20px; }
+.section-head { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.section-head h3 { margin:0; font-size:20px; }
+.muted { color: var(--muted); font-size:14px; }
+.mt-6 { margin-top: 1.5rem; }
+
+.rooms-grid { display:grid; grid-template-columns: 1fr; gap:16px; margin-top:16px; }
+.room-card { display:flex; flex-direction:column; background:#f8fafc; border-radius:10px; overflow:hidden; box-shadow: 0 2px 6px rgba(15,23,42,0.04); border:1px solid #eceff1; }
+.room-image img { width:100%; height:160px; object-fit:cover; display:block; }
+.room-body { padding:12px; display:flex; flex-direction:column; gap:10px; }
+.room-top { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+.room-top h4 { margin:0; font-size:16px; }
+.price { color: #0f766e; font-weight:700; }
+.room-desc { color:#4b5563; font-size:14px; margin:0; flex:1; }
+.room-bottom { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.btn-select { background: var(--teal-600); color:#fff; padding:8px 10px; border-radius:8px; }
+
+/* Booking aside */
+.booking-aside { background: var(--card-bg); border-radius:12px; padding:18px; box-shadow: var(--shadow); position:relative; }
+.booking-form label { display:block; font-size:13px; margin-top:8px; color:#374151; }
+.booking-form input,
+.booking-form select { width:100%; padding:10px; border-radius:8px; border:1px solid #e6e9ee; margin-top:6px; font-size:14px; }
+.date-grid { display:flex; gap:8px; }
+.date-grid > div { flex:1; }
+
+/* submit button */
+.btn-submit { margin-top:10px; background: var(--teal-700); color:#fff; padding:10px; border-radius:8px; width:100%; font-weight:700; }
+
+/* message */
+.message { margin-top:10px; padding:10px; border-radius:8px; font-size:14px; }
+.message.error { background:#fee2e2; color:#991b1b; }
+.message.success { background:#dcfce7; color:#065f46; }
+
+/* Footer */
+.atl-footer { background:#fff; border-top:1px solid #e6eef2; padding-top:24px; }
+.footer-grid { display:grid; grid-template-columns: 1fr; gap:18px; padding:18px 0; }
+.footer-bottom { background:#f3f6f8; padding:14px; text-align:center; color:#6b7280; font-size:13px; }
+
+/* subscribe inline */
+.subscribe { display:flex; gap:8px; margin-top:8px; }
+.subscribe input { flex:1; padding:8px; border-radius:8px; border:1px solid #e6e9ee; }
+.btn-small { padding:8px 12px; border-radius:8px; background:var(--teal-700); color:#fff; }
+
+/* utility */
+.small { font-size:13px; }
+
+/* Responsive */
+@media(min-width: 768px) {
+  .atl-hero-inner { flex-direction:row; }
+  .atl-hero-right img { height:320px; }
+  .rooms-grid { grid-template-columns: repeat(2, 1fr); }
+  .atl-nav { display:flex; }
+  .atl-mobile-book { display:none; }
+  .btn-cta-small { display:none; }
+  .atl-main { grid-template-columns: 2fr 1fr; }
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media(max-width: 767px) {
+  .atl-nav { display:none; }
+  .atl-mobile-book { display:block; }
+  .atl-hero-right { order:2; }
+  .atl-hero-left { order:1; }
+  .booking-aside { position:static; }
+}
+
+/* Sticky aside on larger screens */
+@media(min-width: 1024px) {
+  .booking-aside { position: sticky; top: 24px; align-self:start; }
+}

@@ -1,0 +1,75 @@
+<section className="atl-hero">
+        <video autoPlay loop muted playsInline className="hero-video">
+          <source src="/assets/videos/bg-02.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeos em HTML5.
+        </video>
+
+        <div className="atl-container atl-hero-inner">
+          <div className="atl-hero-left">
+            <h2>Descubra a elegância à beira-mar</h2>
+            <p className="hero-sub">
+              Relaxe em quartos projetados para oferecer conforto, momentos inesquecíveis e serviço personalizado para você.
+            </p>
+
+            <div className="hero-actions">
+              <a href="#booking" className="btn btn-primary">Reserve agora</a>
+              <a href="#rooms" className="btn btn-outline">Ver Quartos</a>
+            </div>
+
+            <div className="hero-note">
+              <strong>Especial:</strong> Café da manhã gratuito para estadias acima de 3 noites. Cancelamento flexível.
+            </div>
+          </div>
+
+          <div className="atl-hero-right">
+            <div className="hero-image-wrap">
+              <img src={heroImg} alt="Hotel" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+
+/* HERO */
+.atl-hero {
+  position: relative;
+  color: #fff;
+  padding: 56px 0;
+  overflow: hidden;
+}
+
+/* vídeo de fundo */
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* sombra por cima do vídeo */
+.atl-hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: -1;
+}
+
+/* garante que o conteúdo fica por cima */
+.atl-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-direction: column;
+}
