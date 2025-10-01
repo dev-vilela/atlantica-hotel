@@ -122,29 +122,37 @@ export default function AtlanticaHotelLayout() {
       </header>
 
       {/* HERO */}
-      <section className="atl-hero">
-        <div className="atl-container atl-hero-inner">
-          <div className="atl-hero-left">
-            <h2>Descubra a elegância à beira-mar</h2>
-            <p className="hero-sub">
-             Relaxe em quartos projetados para oferecer conforto, momentos inesquecíveis e serviço personalizado para você.
-            </p>
+     <section className="atl-hero">
+  <video autoPlay loop muted playsInline className="hero-video">
+    <source src="/assets/videos/bg-02.mp4" type="video/mp4" />
+    Seu navegador não suporta vídeos em HTML5.
+  </video>
 
-            <div className="hero-actions">
-              <a href="#booking" className="btn btn-primary">Reserve agora</a>
-              <a href="#rooms" className="btn btn-outline">Ver Quartos</a>
-            </div>
+  <div className="overlay"></div> {/* sombra suave */}
 
-            <div className="hero-note"><strong>Especial:</strong> Café da manhã gratuito para estadias acima de 3 noites. Cancelamento flexível.</div>
-          </div>
+  <div className="atl-container atl-hero-inner">
+    <div className="atl-hero-left">
+      <h2>Descubra a elegância à beira-mar</h2>
+      <p className="hero-sub">
+        Relaxe em quartos projetados para oferecer conforto, momentos inesquecíveis e serviço personalizado para você.
+      </p>
 
-          <div className="atl-hero-right">
-            <div className="hero-image-wrap">
-             <img src={heroImg} alt="Hotel" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="hero-actions">
+        <a href="#booking" className="btn btn-primary">Reserve agora</a>
+        <a href="#rooms" className="btn btn-outline">Ver Quartos</a>
+      </div>
+
+      <div className="hero-note">
+        <strong>Especial:</strong> Café da manhã gratuito para estadias acima de 3 noites. Cancelamento flexível.
+      </div>
+    </div>  
+    <div className="atl-hero-right">
+      <div className="hero-image-wrap">
+        <img src={heroImg} alt="Hotel" />
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* MAIN: Rooms + Booking form */}
       <main className="atl-container atl-main">

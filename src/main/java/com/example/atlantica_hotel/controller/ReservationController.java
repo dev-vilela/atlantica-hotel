@@ -37,11 +37,13 @@ public class ReservationController {
 
     @GetMapping
     public List<Reservation> listReservations() {
+
         return reservationRepository.findAll();
     }
 
     @DeleteMapping("/{id}")
     public void deleteReservation(@PathVariable Long id) {
+
         reservationRepository.deleteById(id);
     }
 
