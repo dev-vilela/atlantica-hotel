@@ -99,17 +99,10 @@ fetch("http://localhost:8080/api/quartos")
 ---
 
 ## ✅ Funcionalidades
-- Cadastro de clientes 👤  
-- Gerenciamento de quartos 🛏️  
+- Cadastro de clientes API  👤  
+- Gerenciamento de quartos API 🛏️  
 - Controle de reservas 📅  
 - Interface web moderna 💻  
-
----
-
-## 📦 Deploy Futuro
-- **Backend:** Deploy em serviços como Heroku, Railway ou AWS.  
-- **Frontend:** Deploy no Vercel ou Netlify.  
-- **Banco de Dados:** Hospedagem no Supabase ou Railway.  
 
 ---
 
