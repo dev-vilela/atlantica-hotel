@@ -20,7 +20,7 @@ O objetivo é gerenciar reservas, clientes, quartos e manter uma interface moder
 - **Tailwind**
 - **CSS**
 
-<img src="./src/img/screencapture-localhost-3000-2025-09-30-21_38_07.png" alt="" />
+<img src="./src/img/layout2.png" alt="" />
 
 ---
 

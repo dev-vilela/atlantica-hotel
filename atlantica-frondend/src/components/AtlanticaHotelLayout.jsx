@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./AtlanticaHotelLayout.css";
 import heroImg from './img/SALINAS-GERAL-TRAS001.jpg';
-
 
 export default function AtlanticaHotelLayout() {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Form state
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -18,9 +17,9 @@ export default function AtlanticaHotelLayout() {
     checkOut: "",
     guests: 1,
   });
-  const [message, setMessage] = useState(null);
 
-  // Fetch rooms from your API on mount
+  const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchRooms() {
       try {
@@ -47,22 +46,22 @@ export default function AtlanticaHotelLayout() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     if (!form.fullName || !form.email || !form.checkIn || !form.checkOut) {
-      setMessage({ type: "error", text: "Preencha todos os campos obrigatórios." });
+      alert("Preencha todos os campos obrigatórios.");
       return;
     }
 
     try {
-      // Ajuste o payload se sua API espera nomes diferentes (ex: guestName)
-     const payload = {
-        nameClient: form.fullName,   // renomeia corretamente
+      const payload = {
+        nameClient: form.fullName,
         email: form.email,
         phone: form.phone,
         checkIn: form.checkIn,
         checkOut: form.checkOut,
         guests: form.guests,
-        room: { id: form.roomId }    // manda um objeto room
-};
+        room: { id: form.roomId },
+      };
 
       const res = await fetch("http://localhost:8080/atlantica/reservations", {
         method: "POST",
@@ -70,29 +69,17 @@ export default function AtlanticaHotelLayout() {
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) {
-        const text = await res.text().catch(() => null);
-        throw new Error(text || "Erro ao enviar reserva");
-      }
+      if (!res.ok) throw new Error("Erro ao criar reserva");
 
-      const created = await res.json().catch(() => null);
-      setMessage({ type: "success", text: created?.id ? `Reserva confirmada: ${created.id}` : "Reserva enviada com sucesso!" });
+      const created = await res.json();
 
-      setForm((s) => ({
-        ...s,
-        fullName: "",
-        email: "",
-        phone: "",
-        checkIn: "",
-        checkOut: "",
-        guests: 1,
-      }));
+      // 🔥 Redireciona direto para a página de pagamento
+      navigate(`/payment/${created.id}`);
     } catch (err) {
-      setMessage({ type: "error", text: err.message || "Erro ao enviar reserva." });
+      alert(err.message || "Erro ao enviar reserva.");
     }
   }
 
-  // helper to pick image field from API or fallback
   const imageFor = (r) => r.photoUrl || r.photo || r.image || "https://via.placeholder.com/800x500?text=Hotel+Image";
 
   return (
@@ -112,7 +99,7 @@ export default function AtlanticaHotelLayout() {
             <a href="#rooms">Quartos</a>
             <a href="#booking">Reserva</a>
             <a href="#contact">Contato</a>
-            <button className="btn btn-cta">Reserve agora</button>
+            <button className="btn btn-cta" >Reserve agora</button>
           </nav>
 
           <div className="atl-mobile-book">
@@ -122,37 +109,38 @@ export default function AtlanticaHotelLayout() {
       </header>
 
       {/* HERO */}
-     <section className="atl-hero">
-  <video autoPlay loop muted playsInline className="hero-video">
-    <source src="/assets/videos/bg-02.mp4" type="video/mp4" />
-    Seu navegador não suporta vídeos em HTML5.
-  </video>
+      <section className="atl-hero">
+        <video autoPlay loop muted playsInline className="hero-video">
+          <source src="/assets/videos/bg-02.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeos em HTML5.
+        </video>
 
-  <div className="overlay"></div> {/* sombra suave */}
+        <div className="overlay"></div> {/* sombra suave */}
 
-  <div className="atl-container atl-hero-inner">
-    <div className="atl-hero-left">
-      <h2>Descubra a elegância à beira-mar</h2>
-      <p className="hero-sub">
-        Relaxe em quartos projetados para oferecer conforto, momentos inesquecíveis e serviço personalizado para você.
-      </p>
+        <div className="atl-container atl-hero-inner">
+          <div className="atl-hero-left">
+            <h2>Descubra a elegância à beira-mar</h2>
+            <p className="hero-sub">
+              Relaxe em quartos projetados para oferecer conforto, momentos inesquecíveis e serviço personalizado para você.
+            </p>
 
-      <div className="hero-actions">
-        <a href="#booking" className="btn btn-primary">Reserve agora</a>
-        <a href="#rooms" className="btn btn-outline">Ver Quartos</a>
-      </div>
+            <div className="hero-actions">
+              <a href="#booking" className="btn btn-cta">Reserve agora</a>
+              <a href="#rooms" className="btn btn-outline">Ver Quartos</a>
+            </div>
 
-      <div className="hero-note">
-        <strong>Especial:</strong> Café da manhã gratuito para estadias acima de 3 noites. Cancelamento flexível.
-      </div>
-    </div>  
-    <div className="atl-hero-right">
-      <div className="hero-image-wrap">
-        <img src={heroImg} alt="Hotel" />
-      </div>
-    </div>
-  </div>
-</section>
+            <div className="hero-note">
+              <strong>Especial:</strong> Café da manhã gratuito para estadias acima de 3 noites. Cancelamento flexível.
+            </div>
+          </div>  
+
+          <div className="atl-hero-right">
+            <div className="hero-image-wrap">
+              <img src={heroImg} alt="Hotel" />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* MAIN: Rooms + Booking form */}
       <main className="atl-container atl-main">
@@ -193,7 +181,7 @@ export default function AtlanticaHotelLayout() {
 
           <form onSubmit={handleSubmit} className="booking-form">
             <label>Nome Completo *</label>
-            <input name="fullName" value={form.nameClient} onChange={handleChange} />
+            <input name="fullName" value={form.fullName} onChange={handleChange} />
 
             <label>Email *</label>
             <input name="email" type="email" value={form.email} onChange={handleChange} />
@@ -223,8 +211,6 @@ export default function AtlanticaHotelLayout() {
             <input name="guests" type="number" min="1" max="10" value={form.guests} onChange={handleChange} />
 
             <button type="submit" className="btn btn-submit">Solicitar reserva</button>
-
-            {message && <div className={`message ${message.type === "error" ? "error" : "success"}`}>{message.text}</div>}
           </form>
         </aside>
       </main>
@@ -257,11 +243,10 @@ export default function AtlanticaHotelLayout() {
           </div>
         </div>
 
-      <div className="footer-bottom">
-        © {new Date().getFullYear()} Atlântica Hotel — Todos os direitos reservados - by{" "}
-        <a href="https://github.com/dev-vilela" target="_blank" rel="noopener noreferrer">Paulo Vilela</a>
-      </div>
-      
+        <div className="footer-bottom">
+          © {new Date().getFullYear()} Atlântica Hotel — Todos os direitos reservados - by{" "}
+          <a href="https://github.com/dev-vilela" target="_blank" rel="noopener noreferrer">Paulo Vilela</a>
+        </div>
       </footer>
     </div>
   );

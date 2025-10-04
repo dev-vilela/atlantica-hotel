@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AtlanticaHotelApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(AtlanticaHotelApplication.class, args);
 	}
 
