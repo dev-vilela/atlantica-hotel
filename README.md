@@ -8,7 +8,7 @@ O objetivo é gerenciar reservas, clientes, quartos e manter uma interface moder
 ## 🚀 Tecnologias Utilizadas
 
 ### Backend
-- **Java
+- **Java**
 - **Spring Boot 3**
 - **Spring Web**
 - **Spring Data JPA**
