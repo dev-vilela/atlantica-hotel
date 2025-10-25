@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./AtlanticaHotelLayout.css"; // Reaproveitando CSS da homepage
+import "./AtlanticaHotelLayout.css"; 
 
 export default function PaymentPage() {
   const { reservationId } = useParams();
