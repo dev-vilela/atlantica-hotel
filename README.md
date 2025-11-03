@@ -10,13 +10,11 @@ O objetivo é gerenciar reservas, clientes, quartos e manter uma interface moder
 ### Backend
 - **Java**
 - **Spring Boot 3**
-- **Spring Web**
-- **Spring Data JPA**
 - **PostgreSQL**
 - **Maven**
 
 ### Frontend
-- **React 18**
+- **ReactJS**
 - **Tailwind**
 - **CSS**
 
