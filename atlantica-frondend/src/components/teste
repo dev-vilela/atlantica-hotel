@@ -1,0 +1,226 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./AtlanticaHotelLayout.css";
+import heroImg from "./img/SALINAS-GERAL-TRAS001.jpg";
+
+export default function AtlanticaHotelLayout() {
+  const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const [form, setForm] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    roomId: "",
+    checkIn: "",
+    checkOut: "",
+    guests: 1,
+  });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function fetchRooms() {
+      try {
+        const res = await fetch("http://localhost:8080/atlantica/rooms");
+        if (!res.ok) throw new Error("Erro ao carregar quartos");
+        const data = await res.json();
+        setRooms(data);
+        if (data.length > 0) {
+          setForm((s) => ({ ...s, roomId: data[0].id }));
+        }
+      } catch (err) {
+        setError(err.message || "Erro desconhecido");
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchRooms();
+  }, []);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm((s) => ({ ...s, [name]: value }));
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!form.fullName || !form.email || !form.checkIn || !form.checkOut) {
+      alert("Preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    try {
+      const payload = {
+        nameClient: form.fullName,
+        email: form.email,
+        phone: form.phone,
+        checkIn: form.checkIn,
+        checkOut: form.checkOut,
+        guests: form.guests,
+        room: { id: form.roomId },
+      };
+
+      const res = await fetch("http://localhost:8080/atlantica/reservations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("Erro ao criar reserva");
+
+      const created = await res.json();
+
+      // 🔥 Redireciona direto para a página de pagamento
+      navigate(`/payment/${created.id}`);
+    } catch (err) {
+      alert(err.message || "Erro ao enviar reserva.");
+    }
+  }
+
+  // ✅ NOVA FUNÇÃO: redireciona para login antes de reservar
+  function handleReserveClick() {
+    navigate("/login");
+  }
+
+  const imageFor = (r) =>
+    r.photoUrl ||
+    r.photo ||
+    r.image ||
+    "https://via.placeholder.com/800x500?text=Hotel+Image";
+
+  return (
+    <div className="atl-layout">
+      {/* NAVBAR */}
+      <header className="atl-header">
+        <div className="atl-container atl-header-inner">
+          <div className="atl-brand">
+            <div className="atl-logo">AH</div>
+            <div className="atl-brand-text">
+              <h1>Atlântica Hotel</h1>
+              <p className="atl-sub">Conforto &amp; elegância à beira-mar</p>
+            </div>
+          </div>
+
+          <nav className="atl-nav">
+            <a href="#rooms">Quartos</a>
+            <a href="#booking">Reserva</a>
+            <a href="#contact">Contato</a>
+            {/* ✅ Agora redireciona para login */}
+            <button className="btn btn-cta" onClick={handleReserveClick}>
+              Reserve agora
+            </button>
+          </nav>
+
+          <div className="atl-mobile-book">
+            <button className="btn btn-cta-small" onClick={handleReserveClick}>
+              Book
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="atl-hero">
+        <video autoPlay loop muted playsInline className="hero-video">
+          <source src="/assets/videos/bg-02.mp4" type="video/mp4" />
+          Seu navegador não suporta vídeos em HTML5.
+        </video>
+
+        <div className="overlay"></div>
+
+        <div className="atl-container atl-hero-inner">
+          <div className="atl-hero-left">
+            <h2>Descubra a elegância à beira-mar</h2>
+            <p className="hero-sub">
+              Relaxe em quartos projetados para oferecer conforto, momentos
+              inesquecíveis e serviço personalizado para você.
+            </p>
+
+            <div className="hero-actions">
+              {/* ✅ Redireciona para login */}
+              <button onClick={handleReserveClick} className="btn btn-cta">
+                Reserve agora
+              </button>
+              <a href="#rooms" className="btn btn-outline">
+                Ver Quartos
+              </a>
+            </div>
+
+            <div className="hero-note">
+              <strong>Especial:</strong> Café da manhã gratuito para estadias
+              acima de 3 noites. Cancelamento flexível.
+            </div>
+          </div>
+
+          <div className="atl-hero-right">
+            <div className="hero-image-wrap">
+              <img src={heroImg} alt="Hotel" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* LISTAGEM DE QUARTOS */}
+      <section id="rooms" className="atl-section">
+        <div className="atl-container">
+          <h2>Nossos Quartos</h2>
+
+          {loading && <p>Carregando quartos...</p>}
+          {error && <p style={{ color: "red" }}>{error}</p>}
+
+          <div className="atl-rooms-grid">
+            {rooms.map((r) => (
+              <div key={r.id} className="atl-room-card">
+                <img src={imageFor(r)} alt={r.name} />
+                <h3>{r.name}</h3>
+                <p>{r.description}</p>
+                <div className="room-footer">
+                  <span className="price">R$ {r.price?.toFixed(2)}</span>
+                  <button
+                    className="btn btn-cta-small"
+                    onClick={handleReserveClick}
+                  >
+                    Reservar
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FORMULÁRIO DE CONTATO */}
+      <section id="contact" className="atl-section contact-section">
+        <div className="atl-container">
+          <h2>Fale Conosco</h2>
+          <p>
+            Tem dúvidas sobre reservas, tarifas ou eventos? Nossa equipe está
+            pronta para ajudar.
+          </p>
+
+          <form className="contact-form">
+            <input type="text" placeholder="Seu nome" required />
+            <input type="email" placeholder="Seu e-mail" required />
+            <textarea placeholder="Mensagem"></textarea>
+            <button className="btn btn-cta" type="submit">
+              Enviar mensagem
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="atl-footer">
+        <div className="atl-container">
+          <p>
+            © {new Date().getFullYear()} Atlântica Hotel. Todos os direitos
+            reservados.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}

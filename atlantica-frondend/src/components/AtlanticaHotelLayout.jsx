@@ -80,7 +80,12 @@ export default function AtlanticaHotelLayout() {
     }
   }
 
+  function handleReserveClick() {
+    navigate("/login");
+  }
+
   const imageFor = (r) => r.photoUrl || r.photo || r.image || "https://via.placeholder.com/800x500?text=Hotel+Image";
+
 
   return (
     <div className="atl-layout">
@@ -99,7 +104,7 @@ export default function AtlanticaHotelLayout() {
             <a href="#rooms">Quartos</a>
             <a href="#booking">Reserva</a>
             <a href="#contact">Contato</a>
-            <button className="btn btn-cta" >Reserve agora</button>
+            <button className="btn btn-cta" onClick={handleReserveClick} >Reserve agora</button>
           </nav>
 
           <div className="atl-mobile-book">
@@ -125,7 +130,7 @@ export default function AtlanticaHotelLayout() {
             </p>
 
             <div className="hero-actions">
-              <a href="#booking" className="btn btn-cta">Reserve agora</a>
+              <a href="#booking" className="btn btn-cta" onClick={handleReserveClick}>Reserve agora</a>
               <a href="#rooms" className="btn btn-outline">Ver Quartos</a>
             </div>
 
@@ -167,7 +172,8 @@ export default function AtlanticaHotelLayout() {
                   <p className="room-desc">{r.description}</p>
                   <div className="room-bottom">
                     <div className="muted small">Até {r.maxGuests} hóspedes</div>
-                    <button onClick={() => setForm((s) => ({ ...s, roomId: r.id }))} className="btn btn-select">Selecione</button>
+                    {/* <button onClick={() => setForm((s) => ({ ...s, roomId: r.id }))} className="btn btn-select">Selecione</button> */}
+                    <button onClick={handleReserveClick} className="btn btn-select">Rerseve</button>
                   </div>
                 </div>
               </article>
@@ -176,6 +182,27 @@ export default function AtlanticaHotelLayout() {
         </section>
 
         <aside id="booking" className="booking-aside">
+ 
+          <div className="atl-container">
+          <h2>Fale Conosco</h2>
+          <p>
+            Tem dúvidas sobre reservas, tarifas ou eventos? Nossa equipe está
+            pronta para ajudar.
+          </p>
+
+          <form className="booking-form">
+            <input type="text" placeholder="Seu nome" required />
+            <input type="email" placeholder="Seu e-mail" required />
+            <textarea placeholder="Mensagem"></textarea>
+            <button  className="btn btn-submit" type="submit">
+              Enviar mensagem
+            </button>
+          </form>
+        </div>
+
+        </aside>
+
+        {/* <aside id="booking" className="booking-aside">
           <h3>Reserve um quarto</h3>
           <p className="muted small">Preencha o formulário e confirmaremos a disponibilidade.</p>
 
@@ -212,7 +239,7 @@ export default function AtlanticaHotelLayout() {
 
             <button type="submit" className="btn btn-submit">Solicitar reserva</button>
           </form>
-        </aside>
+        </aside> */}
       </main>
 
       {/* FOOTER */}
