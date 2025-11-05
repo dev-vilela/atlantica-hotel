@@ -5,13 +5,27 @@
   --text: #333;
 }
 
+/* Login isolado */
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #2bfac6 0%, #33aeff 100%);
+  height: 100vh;
+  overflow: hidden; /* evita rolagem no login */
+  
+  background-image: url("./img/hotel-login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
+
+/* Garante que só o login não role */
+body.login-active {
+  overflow: hidden;
+}
+
+
 
 .login-card {
   background: var(--card-bg);
@@ -26,6 +40,7 @@
 .login-header h2 {
   margin-bottom: 0.5rem;
   color: var(--primary);
+  text-transform: uppercase;
 }
 
 .login-header p {

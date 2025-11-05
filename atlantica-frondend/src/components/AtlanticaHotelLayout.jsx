@@ -120,7 +120,7 @@ export default function AtlanticaHotelLayout() {
           Seu navegador não suporta vídeos em HTML5.
         </video>
 
-        <div className="overlay"></div> {/* sombra suave */}
+        <div className="overlay"></div> 
 
         <div className="atl-container atl-hero-inner">
           <div className="atl-hero-left">

@@ -4,6 +4,7 @@ import AtlanticaHotelLayout from "./components/AtlanticaHotelLayout";
 import PaymentPage from "./components/PaymentPage";
 import Login from "./components/Login";
 import Cadastro from "./components/Cadastro";
+import Reserva from "./components/Reserva";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/payment/:id" element={<PaymentPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/reserva" element={<Reserva />} />
       </Routes>
     </Router>
   );

@@ -1,0 +1,96 @@
+
+.reserva-section {
+  min-height: 100vh;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.55)
+    ),
+    url("img/hotel-login.png")
+      no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.reserva-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.reserva-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #005b5c;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.reserva-subtitle {
+  text-align: center;
+  color: #444;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.reserva-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: #003b3b;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+input,
+select {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #008c8c;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-reservar {
+  margin-top: 1rem;
+  background: linear-gradient(90deg, #007a7a, #00a8a8);
+  color: #fff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-reservar:hover {
+  background: linear-gradient(90deg, #006060, #008888);
+  transform: translateY(-2px);
+}
+

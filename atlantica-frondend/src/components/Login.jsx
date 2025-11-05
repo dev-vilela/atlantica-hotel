@@ -16,20 +16,37 @@ export default function Login() {
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!form.email || !form.password) {
-      alert("Por favor, preencha todos os campos!");
-      return;
-    }
-
-    // Simulação de login (aqui você pode conectar ao backend futuramente)
-    if (form.email === "admin@hotel.com" && form.password === "1234") {
-      navigate("/"); // redireciona para home
-    } else {
-      alert("Credenciais inválidas!");
-    }
+  if (!form.email || !form.password) {
+    alert("Por favor, preencha todos os campos!");
+    return;
   }
+
+  fetch("http://localhost:8080/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: form.email,
+      senha: form.password, // igual ao nome da propriedade no backend
+    }),
+  })
+    .then(async (response) => {
+      const data = await response.json();
+      if (response.ok && !data.message) {
+        alert("✅ Login realizado com sucesso!");
+        console.log("Usuário logado:", data);
+        navigate("/reserva"); // redireciona para a home
+      } else {
+        alert(data.message || "Credenciais inválidas!");
+      }
+    })
+    .catch(() => {
+      alert("Erro ao conectar ao servidor.");
+    });
+}
 
   return (
     <div className="login-page">
@@ -58,7 +75,7 @@ export default function Login() {
             onChange={handleChange}
           />
 
-          <button type="submit">Entrar</button>
+          <button type="submit" >Entrar</button>
 
           <div className="login-footer">
             <p>

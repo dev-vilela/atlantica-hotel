@@ -14,21 +14,52 @@ export default function Cadastro() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.senha !== formData.confirmarSenha) {
-      alert("As senhas não coincidem!");
-      return;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (formData.senha !== formData.confirmarSenha) {
+    alert("As senhas não coincidem!");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:8080/api/cadastro", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nome: formData.nome,
+        sobrenome: formData.sobrenome,
+        email: formData.email,
+        senha: formData.senha,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && !data.message?.includes("Erro")) {
+      alert(data.message || "✅ Cadastro realizado com sucesso!");
+      setFormData({
+        nome: "",
+        sobrenome: "",
+        email: "",
+        senha: "",
+        confirmarSenha: "",
+      });
+    } else {
+      alert(data.message || "Erro ao cadastrar usuário!");
     }
-    alert("Cadastro realizado com sucesso!");
-    console.log(formData);
-  };
+  } catch (error) {
+    alert("Erro ao conectar com o servidor.");
+    console.error(error);
+  }
+};
+
 
   return (
     <div className="cadastro-container">
       <div className="cadastro-card">
         <div className="cadastro-left">
-          {/* Você pode colocar uma imagem aqui se quiser */}
+         
         </div>
 
         <div className="cadastro-right">

@@ -1,136 +1,120 @@
-body {
-  margin: 0;
-  font-family: "Nunito", sans-serif;
-  background: #f5f7fb;
-  color: #333;
-  height: 100vh;
-  overflow: hidden; /* impede rolagem geral */
-}
-
+/* 🔹 Escopo isolado da página de cadastro */
 .cadastro-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
+  min-height: 100vh; /* cobre toda a tela */
+  background-image: url("./img/SALINAS-GERAL-TRAS001.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 2rem;
 }
 
+/* 🔹 Card principal */
 .cadastro-card {
   display: flex;
+  flex-direction: row;
   background: #fff;
-  border-radius: 20px;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
-  width: 1000px;
-  max-width: 95%;
-  height: 90vh; /* ocupa quase toda a altura do notebook */
-  max-height: 680px; /* evita passar da tela */
+  max-width: 900px;
+  width: 100%;
 }
 
+/* 🔹 Lado esquerdo (imagem ou cor) */
 .cadastro-left {
-  flex: 1.3;
-  background: url("img/SALINAS-GERAL-TRAS001.jpg")
-    center/cover no-repeat;
+  flex: 1;
+  background-image: url("./img/hotel-login.png");
+  background-size: cover;
+  background-position: center;
+  display: none; /* oculta no mobile */
 }
 
+@media (min-width: 768px) {
+  .cadastro-left {
+    display: block;
+  }
+}
+
+/* 🔹 Lado direito (formulário) */
 .cadastro-right {
   flex: 1;
-  padding: 40px 60px;
+  padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
 }
 
+/* 🔹 Título */
 .cadastro-title {
   text-align: center;
-  color: #4e73df;
-  font-weight: 700;
+  color: #333;
+  margin-bottom: 1.5rem;
   font-size: 2rem;
-  margin-bottom: 30px;
 }
 
+/* 🔹 Formulário */
 .cadastro-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 1rem;
 }
 
-.row {
+.cadastro-form .row {
   display: flex;
-  gap: 12px;
+  gap: 1rem;
 }
 
-.col {
+.cadastro-form .col {
   flex: 1;
 }
 
-input {
+.cadastro-form input {
   width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #dcdcdc;
-  border-radius: 10px;
-  font-size: 15px;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
   outline: none;
   transition: all 0.3s ease;
-  background-color: #fafafa;
 }
 
-input:focus {
-  border-color: #4e73df;
-  box-shadow: 0 0 5px rgba(78, 115, 223, 0.4);
-  background-color: #fff;
+.cadastro-form input:focus {
+  border-color: #33aeff;
+  box-shadow: 0 0 0 2px rgba(51, 174, 255, 0.2);
 }
 
+/* 🔹 Botão */
 .btn-salvar {
-  background-color: #4e73df;
-  color: #fff;
+  background: linear-gradient(135deg, #2bfac6 0%, #33aeff 100%);
   border: none;
-  padding: 14px;
-  border-radius: 10px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.9rem;
+  border-radius: 0.5rem;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 16px;
-  transition: 0.3s;
-  margin-top: 10px;
+  transition: transform 0.2s ease;
 }
 
 .btn-salvar:hover {
-  background-color: #224abe;
+  transform: scale(1.03);
 }
 
+/* 🔹 Rodapé */
 .cadastro-footer {
+  margin-top: 1rem;
   text-align: center;
-  margin-top: 20px;
 }
 
 .cadastro-footer a {
-  color: #4e73df;
+  color: #33aeff;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .cadastro-footer a:hover {
   text-decoration: underline;
-}
-
-@media (max-width: 992px) {
-  body {
-    overflow-y: auto; /* libera rolagem no mobile */
-  }
-
-  .cadastro-card {
-    flex-direction: column;
-    height: auto;
-    max-height: none;
-  }
-
-  .cadastro-left {
-    display: none;
-  }
-
-  .cadastro-right {
-    padding: 40px 30px;
-  }
 }
