@@ -39,46 +39,6 @@ export default function AtlanticaHotelLayout() {
     fetchRooms();
   }, []);
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setForm((s) => ({ ...s, [name]: value }));
-  }
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    if (!form.fullName || !form.email || !form.checkIn || !form.checkOut) {
-      alert("Preencha todos os campos obrigatórios.");
-      return;
-    }
-
-    try {
-      const payload = {
-        nameClient: form.fullName,
-        email: form.email,
-        phone: form.phone,
-        checkIn: form.checkIn,
-        checkOut: form.checkOut,
-        guests: form.guests,
-        room: { id: form.roomId },
-      };
-
-      const res = await fetch("http://localhost:8080/atlantica/reservations", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) throw new Error("Erro ao criar reserva");
-
-      const created = await res.json();
-
-      // 🔥 Redireciona direto para a página de pagamento
-      navigate(`/payment/${created.id}`);
-    } catch (err) {
-      alert(err.message || "Erro ao enviar reserva.");
-    }
-  }
 
   function handleReserveClick() {
     navigate("/login");
@@ -174,6 +134,7 @@ export default function AtlanticaHotelLayout() {
                     <div className="muted small">Até {r.maxGuests} hóspedes</div>
                     {/* <button onClick={() => setForm((s) => ({ ...s, roomId: r.id }))} className="btn btn-select">Selecione</button> */}
                     <button onClick={handleReserveClick} className="btn btn-select">Rerseve</button>
+                  {/* <button   onClick={() => navigate(`/reserva/${r.id}`)} className="btn btn-select">Rerseve</button> */}
                   </div>
                 </div>
               </article>

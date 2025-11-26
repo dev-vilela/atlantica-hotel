@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<AtlanticaHotelLayout />} />
-        <Route path="/payment/:id" element={<PaymentPage />} />
+        <Route path="/payment/:roomId" element={<PaymentPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/reserva" element={<Reserva />} />

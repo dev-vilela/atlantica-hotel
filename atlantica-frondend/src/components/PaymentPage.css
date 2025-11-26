@@ -1,0 +1,110 @@
+.payment-section {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.payment-container {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.payment-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+.payment-subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.room-card-detalhe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+}
+
+.room-image img {
+  width: 100%;
+  max-width: 460px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.room-body {
+  flex: 1;
+  min-width: 280px;
+}
+
+.room-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.room-top h3 {
+  font-size: 1.6rem;
+  color: #003366;
+}
+
+.price {
+  font-weight: bold;
+  color: #0077cc;
+  font-size: 1.3rem;
+}
+
+.room-desc {
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.muted.small {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.payment-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: 0.2s;
+  font-size: 1rem;
+}
+
+.btn-cta {
+  background: #0077cc;
+  color: white;
+  border: none;
+}
+
+.btn-cta:hover {
+  background: #005fa3;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.btn-outline:hover {
+  background: #eee;
+}
